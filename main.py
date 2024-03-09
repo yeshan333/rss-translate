@@ -1,23 +1,73 @@
-# coding:utf-8 
-import configparser
-from pygtrans import Translate
-from bs4 import BeautifulSoup
-import sys
+# -*- coding: utf-8 -*-
+
 import os
-from urllib import request, parse
-import urllib
-# pip install pygtrans -i https://pypi.org/simple
-# ref:https://zhuanlan.zhihu.com/p/390801784
-# ref:https://beautifulsoup.readthedocs.io/zh_CN/latest/
-# ref:https://pygtrans.readthedocs.io/zh_CN/latest/langs.html
-# client = Translate()
-# text = client.translate('Google Translate')
-# print(text.translatedText)  # 谷歌翻译
+import time
 import hashlib
+import datetime
+import feedparser
+import configparser
+
+from pygtrans import Translate
+from urllib import parse
+from rfeed import *
+
 def get_md5_value(src):
     _m = hashlib.md5()
     _m.update(src.encode('utf-8'))
     return _m.hexdigest()
+
+
+def getTime(e):
+    try:
+        struct_time =e.published_parsed
+    except:
+        struct_time =time.localtime()
+    return datetime.datetime(*struct_time[:6])
+def getSubtitle(e):
+    try:
+        sub =e.subtitle
+    except:
+        sub =""
+    return sub
+class GoogleTran:
+    def __init__(self, url,  source  = 'auto', target  = 'zh-CN'):
+        self.url = url
+        self.source= source
+        self.target=target
+
+        self.d = feedparser.parse(url)
+        self.GT = Translate()
+    
+    def tr(self,content):
+        if self.source=='proxy': # do not translate
+            return content
+        tt = self.GT.translate(content,target=self.target,source=self.source)
+        try:
+            return tt.translatedText
+        except:
+            return ""
+    
+    def get_newconent(self,max=2):
+        item_list = []
+        if len(self.d.entries) < max:
+            max = len(self.d.entries)
+        for entry in self.d.entries[:max]:
+            one = Item(
+                title=self.tr(entry.title),
+                link=entry.link,
+                description=self.tr(entry.summary),
+                guid=Guid(entry.link),
+                pubDate=getTime(entry))
+            item_list += [one]
+        feed=self.d.feed
+        newfeed = Feed(
+            title=self.tr(feed.title),
+            link=feed.link,
+            description=self.tr(getSubtitle(feed)),
+            lastBuildDate=getTime(feed),
+            items=item_list)
+        return newfeed.rss()
+
 
 
 with open('test.ini', mode = 'r') as f:
@@ -42,17 +92,14 @@ def get_cfg_tra(sec):
         source  = 'auto'
         target  = 'zh-CN'
         
-         
+    elif cc == "proxy":
+        source  = 'proxy'
+        target  = 'proxy'
     else:
         source  = cc.split('->')[0]
         target  = cc.split('->')[1]
     return source,target
 
-
-# config['url']={'url':'www.baidu.com'} #类似于字典操作
- 
-# with open('example.ini','w') as configfile:
-#     config.write(configfile)
 
 BASE=get_cfg("cfg",'base')
 try:
@@ -68,58 +115,10 @@ def tran(sec):
     source,target=get_cfg_tra(sec)
     global links
 
-    links+=[" - %s [%s](%s) -> [%s](%s)\n"%(sec,url,(url),get_cfg(sec,'name'),parse.quote(out_dir))]
-
-
-    GT = Translate()
-    headers={
-        'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36 LBBROWSER'
-        }
-    req = urllib.request.Request(url, headers=headers)
-
- 
-    html_doc=request.urlopen(req).read().decode('utf8')
-    new_md5= get_md5_value(html_doc)
-
-    if old_md5 == new_md5:
-        return
-    else:
-        set_cfg(sec,'md5',new_md5)
-    # move style
-    html_doc=html_doc.replace('<?', '</s')
-    html_doc=html_doc.replace('?>', '/>')
-    
-    soup = BeautifulSoup(html_doc)
-    items=soup.find_all('item')
-
-    for idx,e in enumerate(items):
-        if idx >max_item:
-                e.decompose()
-    
-    content= str(soup)
-    
-    content=content.replace('<title', '<stitle')
-    content=content.replace('title>', 'stitle>')
-    content=content.replace( '<pubdate>','<pubDate><span translate="no">')
-    content=content.replace( '</pubdate>','</span></pubdate>')
-    # print(content)
-    
-    
-    _text = GT.translate(content,target=target,source=source)
-    
-    
+    links+=[" - %s [%s](%s) -> [%s](%s)\n"%(sec,url,(url),get_cfg(sec,'name'),parse.quote(out_dir))]    
+    c = GoogleTran(url,target=target,source=source).get_newconent(max=max_item)
     with open(out_dir,'w',encoding='utf-8') as f:
-        c=_text.translatedText
-        
-        c=c.replace('<stitle', '<title')
-        c=c.replace('stitle>', 'title>')
-        c=c.replace('<span translate="no">', '')
-        c=c.replace('</span></pubdate>', '</pubDate>') # 对于ttrss需要为pubDate才会识别正确
-        c=c.replace('&gt','>') # &gt 会影响识别
-        
         f.write(c)
-        #print(c)
-        #f.write(content)
     print("GT: "+ url +" > "+ out_dir)
 
 for x in secs[1:]:
@@ -130,12 +129,15 @@ with open('test.ini','w') as configfile:
     config.write(configfile)
 
 
-
+def get_idx(l):
+    for idx,line in enumerate(l):
+        if "## rss translate links" in line:
+            return idx+2
 YML="README.md"
 
 f = open(YML, "r+", encoding="UTF-8")
 list1 = f.readlines()           
-list1= list1[:13] + links
+list1= list1[:get_idx(list1)] + links
 
 f = open(YML, "w+", encoding="UTF-8")
 f.writelines(list1)
