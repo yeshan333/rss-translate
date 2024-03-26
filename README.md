@@ -10,3 +10,4 @@ next find the translated link in [https://talengu.github.io/rss-translate/](http
 
  - softwaretestingweekly [https://softwaretestingweekly.com/issues.rss](https://softwaretestingweekly.com/issues.rss) -> [mckinsey_rss.xml](rss/mckinsey_rss.xml)
  - thinkingelixir [https://podcast.thinkingelixir.com/rss](https://podcast.thinkingelixir.com/rss) -> [thinkingelixir.xml](rss/thinkingelixir.xml)
+ - netflix [https://netflixtechblog.com/feed](https://netflixtechblog.com/feed) -> [netflix_tech_blog.xml](rss/netflix_tech_blog.xml)
