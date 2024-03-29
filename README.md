@@ -14,3 +14,5 @@ next find the translated link in [https://talengu.github.io/rss-translate/](http
  - aws [https://aws.amazon.com/blogs/architecture/feed/](https://aws.amazon.com/blogs/architecture/feed/) -> [aws_tech_blog.xml](rss/aws_tech_blog.xml)
  - dzone [https://feeds.dzone.com/home](https://feeds.dzone.com/home) -> [dzone_tech_blog.xml](rss/dzone_tech_blog.xml)
  - microsoft [https://devblogs.microsoft.com/landingpage/](https://devblogs.microsoft.com/landingpage/) -> [microsoft_tech_blog.xml](rss/microsoft_tech_blog.xml)
+ - cncf [https://rsshub.app/cncf](https://rsshub.app/cncf) -> [cncf.xml](rss/cncf.xml)
+ - uber [https://rsshub.app/uber/blog](https://rsshub.app/uber/blog) -> [uber.xml](rss/uber.xml)
