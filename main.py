@@ -115,7 +115,7 @@ def tran(sec):
     source,target=get_cfg_tra(sec)
     global links
 
-    links+=[" - %s [%s](%s) -> https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/[%s](%s)\n"%(sec,url,(url),get_cfg(sec,'name'),parse.quote(out_dir))]    
+    links+=[" - %s [%s](%s) -> [%s](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/%s)\n"%(sec,url,(url),get_cfg(sec,'name'),parse.quote(out_dir))]    
     c = GoogleTran(url,target=target,source=source).get_newconent(max=max_item)
     with open(out_dir,'w',encoding='utf-8') as f:
         f.write(c)
