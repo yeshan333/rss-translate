@@ -18,3 +18,4 @@ next find the translated link in [https://talengu.github.io/rss-translate/](http
  - uber [https://rsshub.app/uber/blog](https://rsshub.app/uber/blog) -> [uber.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/uber.xml)
  - grafana [https://grafana.com/blog/index.xml](https://grafana.com/blog/index.xml) -> [grafana.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/grafana.xml)
  - ebpf [https://ebpf.io/blog/rss.xml](https://ebpf.io/blog/rss.xml) -> [ebpf.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/ebpf.xml)
+ - pythoncat [https://pythoncat.top/rss.xml](https://pythoncat.top/rss.xml) -> [pythoncat.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/pythoncat.xml)
