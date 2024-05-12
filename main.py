@@ -53,13 +53,14 @@ class GoogleTran:
             max = len(self.d.entries)
         for entry in self.d.entries[:max]:
             one = Item(
-                title=self.tr(entry.title),
+                title="【" + entry.title + "】" + self.tr(entry.title),
                 link=entry.link,
                 description=self.tr(entry.summary),
                 guid=Guid(entry.link),
                 pubDate=getTime(entry))
             item_list += [one]
         feed=self.d.feed
+        print(feed)
         newfeed = Feed(
             title=self.tr(feed.title),
             link=feed.link,
