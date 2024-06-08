@@ -23,3 +23,8 @@ next find the translated link in [https://talengu.github.io/rss-translate/](http
  - byte-byte-code [https://blog.bytebytego.com/feed](https://blog.bytebytego.com/feed) -> [byte-byte-code.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/byte-byte-code.xml)
  - sre-weekly [https://sreweekly.com/feed/](https://sreweekly.com/feed/) -> [sre-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/sre-weekly.xml)
  - cloudflare-blog [https://blog.cloudflare.com/rss](https://blog.cloudflare.com/rss) -> [cloudflare-blog.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/cloudflare-blog.xml)
+ - golang-weekly [https://cprss.s3.amazonaws.com/golangweekly.com.xml](https://cprss.s3.amazonaws.com/golangweekly.com.xml) -> [golang-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/golang-weekly.xml)
+ - javascript-weekly [https://cprss.s3.amazonaws.com/javascriptweekly.com.xml](https://cprss.s3.amazonaws.com/javascriptweekly.com.xml) -> [javascript-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/javascript-weekly.xml)
+ - pycoders-weekly [https://pycoders.com/feed/jDwcOsNM](https://pycoders.com/feed/jDwcOsNM) -> [pycoders-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/pycoders-weekly.xml)
+ - thisweekinreact-weekly [https://thisweekinreact.com/newsletter/rss.xml](https://thisweekinreact.com/newsletter/rss.xml) -> [thisweekinreact-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/thisweekinreact-weekly.xml)
+ - elixirstatus [https://elixirstatus.com/rss](https://elixirstatus.com/rss) -> [elixirstatus-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/elixirstatus-weekly.xml)
