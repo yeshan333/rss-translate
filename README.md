@@ -28,3 +28,4 @@ next find the translated link in [https://talengu.github.io/rss-translate/](http
  - pycoders-weekly [https://pycoders.com/feed/jDwcOsNM](https://pycoders.com/feed/jDwcOsNM) -> [pycoders-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/pycoders-weekly.xml)
  - thisweekinreact-weekly [https://thisweekinreact.com/newsletter/rss.xml](https://thisweekinreact.com/newsletter/rss.xml) -> [thisweekinreact-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/thisweekinreact-weekly.xml)
  - elixirstatus [https://elixirstatus.com/rss](https://elixirstatus.com/rss) -> [elixirstatus-weekly.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/elixirstatus-weekly.xml)
+ - sspai-ee0vj778 [https://rsshub.rssforever.com/sspai/author/ee0vj778](https://rsshub.rssforever.com/sspai/author/ee0vj778) -> [sspai-ee0vj778.xml](https://fastly.jsdelivr.net/gh/yeshan333/rss-translate@main/rss/sspai-ee0vj778.xml)
