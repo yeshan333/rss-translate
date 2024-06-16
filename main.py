@@ -52,8 +52,11 @@ class GoogleTran:
         if len(self.d.entries) < max:
             max = len(self.d.entries)
         for entry in self.d.entries[:max]:
+            title="【" + entry.title + "】"
+            if self.source=='proxy':
+                title="【" + entry.title + "】" + self.tr(entry.title)
             one = Item(
-                title="【" + entry.title + "】" + self.tr(entry.title),
+                title=title,
                 link=entry.link,
                 description=self.tr(entry.summary),
                 guid=Guid(entry.link),
