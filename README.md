@@ -1,3 +1,5 @@
+**Use the alternative tools**: [https://github.com/yeshan333/fast-rss-translator](https://github.com/yeshan333/fast-rss-translator)
+
 # rss-translate
 
 rss translate any to any
